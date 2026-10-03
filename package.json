@@ -1,0 +1,28 @@
+{
+  "name": "python-project-83",
+  "version": "1.0.0",
+  "description": "[![Actions Status](https://github.com/aak13-git/python-project-83/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/aak13-git/python-project-83/actions)",
+  "homepage": "https://github.com/aak13-git/python-project-83#readme",
+  "bugs": {
+    "url": "https://github.com/aak13-git/python-project-83/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aak13-git/python-project-83.git"
+  },
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "npx tailwindcss -i ./src/input.css -o ./page_analyzer/static/output.css --watch"
+  },
+  "dependencies": {
+    "@tailwindcss/cli": "^4.3.3",
+    "tailwindcss": "^4.3.3"
+  },
+  "devDependencies": {
+    "@tailwindcss/forms": "^0.5.11"
+  }
+}
