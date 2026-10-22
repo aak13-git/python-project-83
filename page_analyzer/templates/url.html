@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block content %}
+<main class="flex-grow w-full">
+  <div class="mx-auto w-full">
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    <div class="flex flex-col gap-2 mb-4 w-full">
+    {% for category, message in messages %}
+      <div role="alert" class="p-3 text-xs font-semibold rounded-md {% if category == 'warning' %}text-red-800 bg-red-50 border border-red-200{% else %}text-emerald-800 bg-emerald-50 border border-emerald-200{% endif %}">
+      {{ message }}
+      </div>
+    {% endfor %}
+      </div>
+    {% endif %}
+  {% endwith %}
+  </div>
+  <div class="mx-auto max-w-8xl px-10 py-4">
+    <h1 class="text-4xl text-slate-900 mb-4">Сайт: {{ url_info.name }}</h1>
+    <div class="bg-white ring-1 ring-slate-200 overflow-hidden">
+    <div class="w-full overflow-x-auto">
+      <table class="w-full text-left border-collapse text-sm whitespace-nowrap" data-test="url">
+        <tbody class="divide-y divide-slate-200 bg-white text-slate-700">
+          <tr>
+            <td class="w-1/4 px-2 py-2 font-semibold text-xs text-slate-800 border-r border-slate-200">ID</td>
+            <td class="px-2 py-2 font-mono font-semibold text-xs text-slate-800">{{ url_info.id }}</td>
+          </tr>
+
+          <tr class="bg-slate-100">
+            <td class="w-1/4 px-2 py-2 font-semibold text-xs text-slate-800 border-r border-slate-200">Имя</td>
+            <td class="px-2 py-2 font-semibold text-xs text-slate-800">{{ url_info.name }}</td>
+          </tr>
+
+          <tr>
+            <td class="w-1/4 px-2 py-2 font-semibold text-xs text-slate-800 border-r border-slate-200">Дата создания</td>
+            <td class="px-2 py-2 font-semibold text-xs text-slate-800">{{ url_info.created_at }}</td>
+          </tr>
+
+        </tbody>
+      </table>
+    </div>
+    </div>
+  </div>
+</main>
+{% endblock %}

@@ -172,3 +172,4 @@ cython_debug/
 .ruff_cache
 
 node_modules/
+page_analyzer/static/css/main.css

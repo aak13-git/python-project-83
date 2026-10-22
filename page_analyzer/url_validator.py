@@ -12,8 +12,15 @@ def norm_url(url):
 def validate_url(url):
     errors = {}
 
+    if not url or url.strip() == "":
+        errors['url'] = 'URL не может быть пустым'
+        return errors
+
+    if len(url) > 255:
+        errors['url'] = 'Слишком длинный URL (длина не более 255 символов)'
+        return errors
+
     if not validators.url(url):
         errors['url'] = 'Некорректный формат URL'
-    if url == "":
-        errors['url'] = 'URL не может быть пустым'
+
     return errors

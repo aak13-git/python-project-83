@@ -1,5 +1,4 @@
 @import "tailwindcss";
-
 @plugin "@tailwindcss/forms";
 
-@source "../page_analyzer/templates";
+@source "../../page_analyzer";

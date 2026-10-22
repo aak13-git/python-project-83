@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% block content %}
+<main class="flex-grow w-full">
+    <div class="mx-auto w-full">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <div class="flex flex-col gap-2 mb-4 w-full">
+                    {% for category, message in messages %}
+                        <div role="alert" class="p-3 text-xs font-semibold rounded-md {% if category == 'warning' %}text-red-800 bg-red-50 border border-red-200{% else %}text-emerald-800 bg-emerald-50 border border-emerald-200{% endif %}">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
+    </div>
+    <div class="mx-auto max-w-8xl px-10 py-3">
+    <h1 class="text-3xl text-slate-900 mb-2">Сайты</h1>
+    <div class="bg-white border border-slate-200 overflow-hidden">
+        <div class="w-full overflow-x-auto">
+            <table class="w-full text-left border-collapse text-sm whitespace-nowrap" data-test="urls">
+                <thead class="text-slate-800 border-b border-slate-200">
+                    <tr class="divide-x divide-slate-200">
+                        <th class="w-8 px-2 py-3 font-semibold text-xs text-slate-800">ID</th>
+                        <th class="w-44 px-2 py-3 font-semibold text-xs text-slate-800">Имя</th>
+                        <th class="w-52 px-2 py-3 font-semibold text-xs text-slate-800">Последняя проверка</th>
+                        <th class="w-24 px-2 py-3 font-semibold text-xs text-slate-800">Код ответа</th>
+                    </tr>
+                </thead>
+                <tbody class="bg-white text-slate-800 divide-y divide-slate-200">
+                {% for url in all_urls_checks %}
+                    <tr class="divide-x divide-slate-200">
+                        <td class="px-2 py-3 text-xs font-mono text-slate-800">{{ url.id }}</td>
+                        <td class="px-2 py-3 text-xs text-blue-600 hover:underline">
+                            <a href="/urls/{{ url.id }}">{{ url.name }}</a>
+                        </td>
+                        <td class="px-2 py-3 text-xs text-slate-800">{{ url.created_at | default('', true) }}</td>
+                        <td class="px-2 py-3 text-xs">{{ url.status_code if url.status_code else '' }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+</div>
+</main>
+{% endblock %}
