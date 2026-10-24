@@ -12,13 +12,19 @@ class UrlRepository:
     def find_url(self, name):
         with self.get_connection() as conn:
             with conn.cursor(cursor_factory=DictCursor) as cursor:
-                cursor.execute("SELECT id, name, created_at FROM urls WHERE name = %s;", (name,))
+                cursor.execute(
+                    "SELECT id, name, created_at FROM urls WHERE name = %s;",
+                    (name,)
+                )
                 return cursor.fetchone()
 
     def find_url_by_id(self, url_id):
         with self.get_connection() as conn:
             with conn.cursor(cursor_factory=DictCursor) as cursor:
-                cursor.execute("SELECT id, name, created_at FROM urls WHERE id = %s;", (url_id,))
+                cursor.execute(
+                    "SELECT id, name, created_at FROM urls WHERE id = %s;",
+                    (url_id,)
+                )
                 return cursor.fetchone()
 
     def add_url(self, name):

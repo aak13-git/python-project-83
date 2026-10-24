@@ -94,6 +94,7 @@ def check_url(id):
         url_checks=url_checks,
     )
 
+
 @app.route('/urls', methods=['GET'])
 def urls_list():
     repo = UrlRepository(DATABASE_URL)

@@ -5,7 +5,6 @@ setup:
 
 install:
 	uv sync
-	npm install
 
 build:
 	./build.sh
@@ -30,7 +29,6 @@ lint-fix:
 
 render-start:
 	gunicorn -w 5 -b 0.0.0.0:$(PORT) page_analyzer:app
-
 
 run_db:
 	docker-compose up -d
