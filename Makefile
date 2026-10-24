@@ -5,7 +5,7 @@ setup:
 
 install:
 	uv sync
-	npm ci
+	npm install
 
 build:
 	./build.sh
