@@ -63,7 +63,6 @@ def get_url(id):
 
     if not url_info:
         abort(404)
-
     return render_template(
         'url.html',
         url_info=url_info,
@@ -73,7 +72,7 @@ def get_url(id):
 @app.route('/urls/<int:id>/checks', methods=['POST'])
 def check_url(id):
     repo = UrlRepository(DATABASE_URL)
-    url_info = repo.find_id(id)
+    url_info = repo.find_url_by_id(id)
 
     try:
         response = requests.get(url_info.get('name'), timeout=5)

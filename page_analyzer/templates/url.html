@@ -40,5 +40,39 @@
     </div>
     </div>
   </div>
+  <div class="mx-auto max-w-8xl px-10 py-4">
+    <h1 class="text-2xl text-slate-900 mb-4">Проверки</h1>
+    <form method="post" action="/urls/{{ url_info.id }}/checks">
+      <input type="submit" class="bg-blue-600 text-white mb-4 font-medium py-1.5 px-8 rounded-md text-sm text-uppercase cursor-pointer transition-colors flex-shrink-0" value="Запустить проверку">
+    </form>
+    <div class="bg-white ring-1 ring-slate-200 overflow-hidden">
+    <div class="w-full overflow-x-auto">
+      <table class="w-full text-left border-collapse text-sm whitespace-nowrap" data-test="checks">
+        <thead class="text-slate-800 border-b border-slate-200">
+          <tr class="divide-x divide-slate-200">
+            <th class="w-8 px-2 py-3 font-semibold text-xs text-slate-800">ID</th>
+            <th class="w-12 px-2 py-3 font-semibold text-xs text-slate-800">Код ответа</th>
+            <th class="w-32 px-2 py-3 font-semibold text-xs text-slate-800">h1</th>
+            <th class="w-32 px-2 py-3 font-semibold text-xs text-slate-800">title</th>
+            <th class="w-32 px-2 py-3 font-semibold text-xs text-slate-800">description</th>
+            <th class="w-12 px-2 py-3 font-semibold text-xs text-slate-800">Дата создания</th>
+          </tr>
+        </thead>
+        <tbody class="bg-white text-slate-800 divide-y divide-slate-200">
+        {% for url_check in url_checks %}
+          <tr class="divide-x divide-slate-200">
+            <td class="w-8 px-2 py-3 text-xs font-mono text-slate-800">{{ url_check.id }}</td>
+            <td class="w-12 px-2 py-3 text-xs font-mono text-slate-800">{{ url_check.status_code | default('', true) }}</td>
+            <td class="w-32 px-2 py-3 text-xs font-mono text-slate-800 truncate max-w-xs">{{ url_check.h1 | default('', true) }}</td>
+            <td class="w-32 px-2 py-3 text-xs font-mono text-slate-800 truncate max-w-xs">{{ url_check.title | default('', true) }}</td>
+            <td class="w-32 px-2 py-3 text-xs font-mono text-slate-800 truncate max-w-xs">{{ url_check.description | default('', true) }}</td>
+            <td class="w-12 px-2 py-3 text-xs font-mono text-slate-800">{{ url_check.created_at }}</td>
+          </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    </div>
+  </div>
 </main>
 {% endblock %}
